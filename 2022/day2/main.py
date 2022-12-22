@@ -15,8 +15,8 @@ class M:
     Scissors = "scissors"
 
 
-def typed(v: (str, str)) -> (M, M):
-    def _typed(vv: str) -> M:
+def typed(v: tuple[str, str]) -> tuple[str, str]:
+    def _typed(vv: str) -> str:
         match vv:
             case M.A | M.X:
                 return M.Rock
@@ -30,7 +30,7 @@ def typed(v: (str, str)) -> (M, M):
     return (_typed(v[0]), _typed(v[1]))
 
 
-def score(value: (str, str)) -> (int, int):
+def score(value: tuple[str, str]) -> tuple[int, int]:
     base_pt = 0
     v = typed(value)
     # add the points you might win as a bonus, for the move you chose
