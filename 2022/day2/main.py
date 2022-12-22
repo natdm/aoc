@@ -3,7 +3,7 @@ import sys
 
 
 # Convert possible inputs to constants just for programming ease
-class Moves:
+class M:
     A = "A"
     B = "B"
     C = "C"
@@ -15,15 +15,15 @@ class Moves:
     Scissors = "scissors"
 
 
-def typed(v: (str, str)) -> (Moves, Moves):
-    def _typed(vv: str) -> Moves:
+def typed(v: (str, str)) -> (M, M):
+    def _typed(vv: str) -> M:
         match vv:
-            case Moves.A | Moves.X:
-                return Moves.Rock
-            case Moves.B | Moves.Y:
-                return Moves.Paper
-            case Moves.C | Moves.Z:
-                return Moves.Scissors
+            case M.A | M.X:
+                return M.Rock
+            case M.B | M.Y:
+                return M.Paper
+            case M.C | M.Z:
+                return M.Scissors
             case _:
                 raise Exception("no")
 
@@ -35,26 +35,22 @@ def score(value: (str, str)) -> (int, int):
     v = typed(value)
     # add the points you might win as a bonus, for the move you chose
     match v[1]:
-        case Moves.Rock:
+        case M.Rock:
             base_pt = 1
-        case Moves.Paper:
+        case M.Paper:
             base_pt = 2
-        case Moves.Scissors:
+        case M.Scissors:
             base_pt = 3
 
     match typed(value):
-        case (Moves.Scissors, Moves.Paper) | (Moves.Rock, Moves.Scissors) | (
-            Moves.Paper,
-            Moves.Rock,
-        ):
+        case (M.Scissors, M.Paper) | (M.Rock, M.Scissors) | (M.Paper, M.Rock):
             return (6, 0 + base_pt)
-        case (Moves.Paper, Moves.Scissors) | (Moves.Scissors, Moves.Rock) | (
-            Moves.Rock,
-            Moves.Paper,
-        ):
+        case (M.Paper, M.Scissors) | (M.Scissors, M.Rock) | (M.Rock, M.Paper):
             return (0, 6 + base_pt)
-        case x:
+        case (x, y) if x == y:
             return (3, 3 + base_pt)
+        case _:
+            raise Exception("Impossibru!")
 
 
 if __name__ == "__main__":

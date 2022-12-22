@@ -34,4 +34,4 @@ if __name__ == "__main__":
             highest_name = elf
             highest_ct = elf_cals[elf]
 
-    print(highest_name)
+    print("{} has {} calories".format(highest_name, highest_ct))
