@@ -53,15 +53,10 @@ def score(value: tuple[str, str]) -> tuple[int, int]:
             raise Exception("Impossibru!")
 
 
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        raise Exception("need a file, eg: python main.py input.txt")
-    f = open(sys.argv[1])
-    input = f.readlines()
-
+def calculate_score(input):
     total = 0
     for l in input:
         s = score(tuple(l.strip().split(" ")))
         total += s[1]
 
-    print(total)
+    return total
