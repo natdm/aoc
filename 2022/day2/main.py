@@ -1,7 +1,4 @@
 # https://adventofcode.com/2022/day/2
-import sys
-
-
 # Convert possible inputs to constants just for programming ease
 class M:
     A = "A"
@@ -53,7 +50,7 @@ def score(value: tuple[str, str]) -> tuple[int, int]:
             raise Exception("Impossibru!")
 
 
-def calculate_score(input):
+def run(input):
     total = 0
     for l in input:
         s = score(tuple(l.strip().split(" ")))
